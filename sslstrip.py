@@ -33,7 +33,7 @@ from sslstrip.CookieCleaner import CookieCleaner
 
 import sys, getopt, logging, traceback, string, os
 
-gVersion = "0.8"
+gVersion = "0.10"
 
 def usage():
     print("\nsslstrip " + gVersion + " by Moxie Marlinspike")
