@@ -16,10 +16,10 @@
 # USA
 #
 
-import logging, re, string, random, zlib, gzip, StringIO
+import logging, re, string, random, zlib, gzip, io
 
 from twisted.web.http import HTTPClient
-from URLMonitor import URLMonitor
+from .URLMonitor import URLMonitor
 
 class ServerConnection(HTTPClient):
 
@@ -55,7 +55,7 @@ class ServerConnection(HTTPClient):
         self.sendCommand(self.command, self.uri)
 
     def sendHeaders(self):
-        for header, value in self.headers.items():
+        for header, value in list(self.headers.items()):
             logging.log(self.getLogLevel(), "Sending header: %s : %s" % (header, value))
             self.sendHeader(header, value)
 
@@ -121,7 +121,7 @@ class ServerConnection(HTTPClient):
     def handleResponse(self, data):
         if (self.isCompressed):
             logging.debug("Decompressing content...")
-            data = gzip.GzipFile('', 'rb', 9, StringIO.StringIO(data)).read()
+            data = gzip.GzipFile('', 'rb', 9, io.StringIO(data)).read()
             
         logging.log(self.getLogLevel(), "Read from server:\n" + data)
 

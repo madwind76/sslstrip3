@@ -1,4 +1,3 @@
-#!/usr/bin/env python
 import sys, os, shutil
 from distutils.core import setup, Extension
 
@@ -6,7 +5,7 @@ from distutils.core import setup, Extension
 shutil.copyfile("sslstrip.py", "sslstrip/sslstrip")
 
 setup  (name        = 'sslstrip',
-        version     = '0.9',
+        version     = '0.8',
         description = 'A MITM tool that implements Moxie Marlinspike\'s HTTPS stripping attacks.',
         author = 'Moxie Marlinspike',
         author_email = 'moxie@thoughtcrime.org',
@@ -15,10 +14,9 @@ setup  (name        = 'sslstrip',
         packages  = ["sslstrip"],
         package_dir = {'sslstrip' : 'sslstrip/'},
         scripts = ['sslstrip/sslstrip'],
-        data_files = [('share/sslstrip', ['README', 'COPYING', 'lock.ico'])],
        )
 
-print "Cleaning up..."
+print("Cleaning up...")
 try:
     removeall("build/")
     os.rmdir("build/")
@@ -52,5 +50,6 @@ def removeall(path):
 def rmgeneric(path, __func__):
 	try:
 		__func__(path)
-	except OSError, (errno, strerror):
+	except OSError as xxx_todo_changeme:
+		(errno, strerror) = xxx_todo_changeme.args
 		pass

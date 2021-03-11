@@ -39,11 +39,11 @@ class URLMonitor:
             if (re.match(expression, url)):
                 return True
 
-        return (client,url) in self.strippedURLs
+        return (client, url) in self.strippedURLs
 
     def getSecurePort(self, client, url):
-        if (client,url) in self.strippedURLs:
-            return self.strippedURLPorts[(client,url)]
+        if (client, url) in self.strippedURLs:
+            return self.strippedURLPorts[(client, url)]
         else:
             return 443
 
